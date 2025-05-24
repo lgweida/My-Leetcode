@@ -1,0 +1,94 @@
+Here’s a **mock interview script** simulating an Amazon technical interview, covering coding, system design, and behavioral rounds with detailed feedback:
+
+---
+
+### **🎯 Mock Interview: Amazon Technical Interview Simulation**
+
+#### **Interviewer (I):** "Welcome! Let’s start with a coding problem. You have 30 minutes."
+**Problem:** [Merge Intervals](https://leetcode.com/problems/merge-intervals/)  
+**Candidate (C):**  
+1. **Clarifies Requirements:**  
+   - "Are intervals sorted? Can they be empty?" *(I: "No, handle unsorted. Empty input returns empty.")*  
+2. **Approach:**  
+   - "I’ll sort intervals by start time, then merge overlapping ones in one pass."  
+3. **Solution Code:**  
+   ```python
+   def merge(intervals):
+       intervals.sort(key=lambda x: x[0])
+       merged = []
+       for interval in intervals:
+           if not merged or merged[-1][1] < interval[0]:
+               merged.append(interval)
+           else:
+               merged[-1][1] = max(merged[-1][1], interval[1])
+       return merged
+   ```
+4. **Testing:**  
+   - Tests `[[1,3],[2,6],[8,10]]` → `[[1,6],[8,10]]` (overlap).  
+   - Edge case: `[]` → `[]`.  
+
+**Feedback:**  
+✅ **Good:** Clear explanation, optimal solution (O(n log n)).  
+⚠️ **Improve:** Mention space complexity (O(n) for sorting in Python).  
+
+---
+
+#### **I:** "Now, let’s design Amazon’s product recommendation system."  
+**C’s Approach:**  
+1. **Requirements Clarification:**  
+   - "Is this for ‘Frequently Bought Together’ or personalized recommendations?" *(I: "Personalized.")*  
+2. **High-Level Design:**  
+   - **Data Pipeline:** Clickstream data → Kafka → Spark (aggregation).  
+   - **ML Model:** Collaborative filtering (user-item matrix) + Matrix Factorization.  
+   - **Storage:** Redis for real-time recommendations, DynamoDB for user profiles.  
+3. **Scalability:**  
+   - "Use sharding for DynamoDB. Cache hot recommendations with CDN."  
+
+**Feedback:**  
+✅ **Good:** Mentions AWS services (DynamoDB, Kafka).  
+⚠️ **Improve:** Discuss cold-start problem and fallback (e.g., popular items).  
+
+---
+
+#### **I:** "Tell me about a time you faced a tight deadline."  
+**C’s Response (STAR Format):**  
+- **Situation:** "Our team had 2 days to fix a checkout bug before Prime Day."  
+- **Task:** "I led debugging for the payment timeout issue."  
+- **Action:** "Traced logs to a race condition, wrote a hotfix, and coordinated QA."  
+- **Result:** "Deployed fix in 18 hours, zero downtime during Prime Day."  
+- **Principle:** "Bias for Action + Customer Obsession."  
+
+**Feedback:**  
+✅ **Good:** Quantifiable result, ties to Amazon principles.  
+⚠️ **Improve:** Add how you mitigated risks (e.g., rollback plan).  
+
+---
+
+### **📝 Key Takeaways for Amazon Interviews**
+1. **Coding Round:**  
+   - Always **clarify inputs/edge cases** first.  
+   - **Verbally explain** while coding (Amazon values communication).  
+
+2. **System Design:**  
+   - **Draw boxes/lines** for components (e.g., "Here’s my Kafka queue").  
+   - **Discuss trade-offs** (e.g., "Redis gives low latency but costs more").  
+
+3. **Behavioral Round:**  
+   - **Use STAR** but keep it concise (<2 mins).  
+   - **Link to Leadership Principles** explicitly.  
+
+---
+
+### **🔧 Practice Exercise**
+Try this **live coding problem** with a 30-minute timer:  
+**Problem:** [Design Tic-Tac-Toe](https://leetcode.com/problems/design-tic-tac-toe/)  
+**Amazon Focus:** O(1) time per move, scalable for NxN boards.  
+
+---
+
+### **📚 Resources**
+- **Coding:** [Amazon Top 75 Questions](https://leetcode.com/list/xi4ci4ig/)  
+- **System Design:** [Grokking the System Design Interview](https://www.educative.io/courses/grokking-the-system-design-interview)  
+- **Behavioral:** [Amazon Leadership Principles Examples](https://www.amazon.jobs/en/principles)  
+
+Would you like a **detailed breakdown** of any specific part (e.g., how to answer "Tell me about yourself" for Amazon)? 😊
